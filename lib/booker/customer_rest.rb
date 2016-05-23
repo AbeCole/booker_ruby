@@ -2,16 +2,6 @@ module Booker
   module CustomerREST
     include CommonREST
 
-    def create_appointment(booker_location_id:, available_time:, customer:, options: {})
-      post '/appointment/create', build_params({
-            'LocationID' => booker_location_id,
-            'ItineraryTimeSlotList' => [
-              'TreatmentTimeSlots' => [available_time]
-            ],
-            'Customer' => customer
-          }, options), Booker::Models::Appointment
-    end
-
     def create_class_appointment(booker_location_id:, class_instance_id:, customer:, options: {})
       post '/class_appointment/create', build_params({
             'LocationID' => booker_location_id,
@@ -105,6 +95,22 @@ module Booker
           }]
         }
       }, options)
+    end
+
+    def create_appointment(booker_location_id, start_time, treatment_id, incomplete_appoinment_id, customer_id, options: {})
+      post '/appointment/create', build_params({
+            'LocationID' => booker_location_id,
+            'ItineraryTimeSlotList' => [
+              'TreatmentTimeSlots' => [{
+                "StartDateTime": start_time,
+                "TreatmentID": treatment_id
+              }]
+            ],
+            'IncompleteAppointmentID' => incomplete_appoinment_id,
+            'Customer' => {
+              'ID' => customer_id
+            }
+          }, options), Booker::Models::Appointment
     end
   end
 end
