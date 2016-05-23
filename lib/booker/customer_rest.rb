@@ -101,6 +101,7 @@ module Booker
       post '/appointment/create', build_params({
             'LocationID' => booker_location_id,
             'ItineraryTimeSlotList' => [
+              "StartDateTime": start_time,
               'TreatmentTimeSlots' => [{
                 "StartDateTime": start_time,
                 "TreatmentID": treatment_id
