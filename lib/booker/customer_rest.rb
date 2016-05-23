@@ -81,8 +81,14 @@ module Booker
     def create_incomplete_appointment(booker_location_id, start_time, treatment_id, options: {})
       post '/appointment/createincomplete', build_params({
         'LocationID' => booker_location_id,
-        'StartDateTime' => start_time,
-        'ItineraryTimeSlot' => [
+        'ItineraryTimeSlot' => {
+          "CurrentPackagePrice": {
+              "Amount": 0,
+              "CurrencyCode": ""
+          },
+          "IsPackage": true,
+          "PackageID": nil,
+          'StartDateTime' => start_time,
           'TreatmentTimeSlots' => [{
             "CurrentPrice": {
               "Amount": 0,
@@ -97,7 +103,7 @@ module Booker
             "PrefferedStaffGender": nil,
             "EmployeeWasRequested": false
           }]
-        ]
+        }
       }, options)
     end
   end
