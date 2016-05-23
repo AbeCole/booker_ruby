@@ -97,7 +97,7 @@ module Booker
       }, options)
     end
 
-    def create_appointment(booker_location_id, start_time, treatment_id, incomplete_appoinment_id, customer_id, options: {})
+    def create_appointment(booker_location_id, start_time, treatment_id, incomplete_appoinment_id, customer, options: {})
       post '/appointment/create', build_params({
             'LocationID' => booker_location_id,
             'ItineraryTimeSlotList' => [
@@ -108,9 +108,7 @@ module Booker
               }]
             ],
             'IncompleteAppointmentID' => incomplete_appoinment_id,
-            'Customer' => {
-              'ID' => customer_id
-            }
+            'Customer' => customer
           }, options), Booker::Models::Appointment
     end
   end
