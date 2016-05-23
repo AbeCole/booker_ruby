@@ -78,11 +78,12 @@ module Booker
       })
     end
 
-    def create_incomplete_appointment(booker_location_id, available_time, options: {})
+    def create_incomplete_appointment(booker_location_id, available_time, package, options: {})
       post '/appointment/createincomplete', build_params({
         'LocationID' => booker_location_id,
+        'StartDateTime' => available_time,
         'ItineraryTimeSlot' => [
-          'TreatmentTimeSlots' => [available_time]
+          'TreatmentTimeSlots' => [package]
         ]
       }, options)
     end
