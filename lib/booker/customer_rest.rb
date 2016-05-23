@@ -49,5 +49,42 @@ module Booker
           'ExcludeClosedDates' => true
         }, options), Booker::Models::ClassInstance
     end
+
+    def get_locations
+      post '/locations', build_params
+    end
+
+    def get_treatments(location_id, category_id = nil)
+      post '/treatments', build_params({
+        'LocationID' => location_id,
+        'CategoryID' => category_id
+      })
+    end
+
+    def get_categories(location_id)
+      get '/treatment_categories', build_params({
+        'location_id' => location_id
+      })
+    end
+
+    def create_customer(data)
+      post '/customer/account', build_params({
+        'Email' => data[:email],
+        'Password' => data[:password],
+        'LocationID' => data[:location_id],
+        'FirstName' => data[:first_name],
+        'LastName' => data[:last_name],
+        'HomePhone' => data[:cell_phone]
+      })
+    end
+
+    def create_incomplete_appointment(booker_location_id, available_time, options: {})
+      post '/appointment/createincomplete', build_params({
+        'LocationID' => booker_location_id,
+        'ItineraryTimeSlotList' => [
+          'TreatmentTimeSlots' => [available_time]
+        ]
+      }, options)
+    end
   end
 end
