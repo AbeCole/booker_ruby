@@ -86,7 +86,7 @@ module Booker
               "Amount": 0,
               "CurrencyCode": ""
           },
-          "IsPackage": true,
+          "IsPackage": false,
           "PackageID": nil,
           'StartDateTime' => start_time,
           'TreatmentTimeSlots' => [{
