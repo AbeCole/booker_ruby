@@ -101,15 +101,19 @@ module Booker
       }, options)
     end
 
-    def create_appointment(booker_location_id, start_time, treatment_id, incomplete_appoinment_id, customer, options: {})
+    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer, options: {})
+      treatment_time_slots = treatment_ids.map do |id|
+        {
+          "StartDateTime": start_time,
+          "TreatmentID": id
+        }
+      end
+
       post '/appointment/create', build_params({
             'LocationID' => booker_location_id,
             'ItineraryTimeSlotList' => [
               "StartDateTime": start_time,
-              'TreatmentTimeSlots' => [{
-                "StartDateTime": start_time,
-                "TreatmentID": treatment_id
-              }]
+              'TreatmentTimeSlots' => treatment_time_slots
             ],
             'IncompleteAppointmentID' => incomplete_appoinment_id,
             'Customer' => customer
