@@ -115,9 +115,9 @@ module Booker
               "StartDateTime": start_time,
               'TreatmentTimeSlots' => treatment_time_slots
             ],
-            "AppointmentPayment": {
-              "PaymentItem": {
-                "CreditCard": {
+            "AppointmentPayment" => {
+              "PaymentItem" => {
+                "CreditCard" => {
                   credit_card
                 }
               }
