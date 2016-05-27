@@ -101,7 +101,7 @@ module Booker
       }, options)
     end
 
-    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer, options: {})
+    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer, credit_card, options: {})
       treatment_time_slots = treatment_ids.map do |id|
         {
           "StartDateTime": start_time,
@@ -115,6 +115,13 @@ module Booker
               "StartDateTime": start_time,
               'TreatmentTimeSlots' => treatment_time_slots
             ],
+            "AppointmentPayment": {
+              "PaymentItem": {
+                "CreditCard": {
+                  credit_card
+                }
+              }
+            },
             'IncompleteAppointmentID' => incomplete_appoinment_id,
             'Customer' => customer
           }, options), Booker::Models::Appointment
