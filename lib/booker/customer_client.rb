@@ -10,7 +10,7 @@ module Booker
 
     def env_base_url_key; 'BOOKER_CUSTOMER_SERVICE_URL'; end
 
-    def default_base_url; 'https://apicurrent-app.booker.ninja/webservice4/json/CustomerService.svc'; end
+    def default_base_url; 'https://app.secure-booker.com/webservice4/json/CustomerService.svc'; end
 
     def access_token_options; super.merge!(grant_type: 'client_credentials'); end
   end
