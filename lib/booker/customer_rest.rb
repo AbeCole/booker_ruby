@@ -117,7 +117,10 @@ module Booker
             ],
             "AppointmentPayment" => {
               "PaymentItem" => {
-                "CreditCard" => credit_card
+                "CreditCard" => credit_card,
+                "Method" => {
+                  "ID" => 1
+                }
               }
             },
             'IncompleteAppointmentID' => incomplete_appoinment_id,
