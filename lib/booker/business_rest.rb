@@ -95,5 +95,11 @@ module Booker
             'Name' => name
           }, params))
     end
+
+    def find_rooms(booker_location_id, params: {})
+      post('/rooms', build_params({
+            'LocationID' => booker_location_id,
+          }, params))
+    end
   end
 end
