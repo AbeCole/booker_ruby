@@ -3,7 +3,7 @@ module Booker
     include Booker::BusinessREST
 
     ACCESS_TOKEN_HTTP_METHOD = :post
-    ACCESS_TOKEN_ENDPOINT = '/accountlogin'.freeze
+    # ACCESS_TOKEN_ENDPOINT = '/accountlogin'.freeze
 
     attr_accessor :booker_account_name, :booker_username, :booker_password
 
