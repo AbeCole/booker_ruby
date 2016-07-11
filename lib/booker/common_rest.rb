@@ -11,6 +11,10 @@ module Booker
       Booker::Models::OnlineBookingSettings.from_hash(response['OnlineBookingSettings'])
     end
 
+    def get_server_info
+      get '/server_information', build_params
+    end
+
     def confirm_appointment(appointment_id:)
       put '/appointment/confirm', build_params('ID' => appointment_id), Booker::Models::Appointment
     end

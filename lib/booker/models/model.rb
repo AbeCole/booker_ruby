@@ -86,7 +86,7 @@ module Booker
       # Booker's API requires times to be sent in as if the business is in Eastern Time!
       def self.time_to_booker_datetime(time)
         original_tz = Time.zone
-
+        
         begin
           # Booker's server is always EST
           Time.zone = Booker::Client::TimeZone
