@@ -4,7 +4,9 @@ module Booker
       attr_accessor 'ID',
                     'FirstName',
                     'LastName',
-                    'Gender'
+                    'Gender',
+                    'Photo',
+                    'ProfileDescription'
     end
   end
 end
