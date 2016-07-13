@@ -11,7 +11,7 @@ module Booker
         self.response = response
         self.error = response['error'] || response['ErrorMessage']
         self.description = response['error_description']
-        self.argument_errors = response["ArgumentErrors"].map { |a| { :attr => a["ArgumentName"], :message => a["ErrorMessage"] } }
+        self.argument_errors = response["ArgumentErrors"].map { |a| { :attr => a["ArgumentName"], :message => a["ErrorMessage"] } } unless response["ArgumentErrors"].nil?
       end
 
       self.url = url
