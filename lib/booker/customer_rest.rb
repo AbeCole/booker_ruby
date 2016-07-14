@@ -129,7 +129,7 @@ module Booker
     end
 
     def login(booker_location_id, email, password, options: {})
-      post '/login', build_params({
+      post '/customer/login', build_params({
             'LocationID' => booker_location_id,
             'Email' => email,
             'Password' => password,
