@@ -133,7 +133,7 @@ module Booker
             'LocationID' => booker_location_id,
             'Email' => email,
             'Password' => password
-          }, options)
+          }, options.merge(access_token_options))
     end
 
     def forgot_password(booker_location_id, email, first_name, base_url, options: {})
