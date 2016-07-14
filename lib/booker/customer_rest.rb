@@ -132,7 +132,16 @@ module Booker
       post '/customer/login', build_params({
             'LocationID' => booker_location_id,
             'Email' => email,
-            'Password' => password,
+            'Password' => password
+          }, options)
+    end
+
+    def forgot_password(booker_location_id, email, first_name, base_url, options: {})
+      post '/forgot_password/custom', build_params({
+            'LocationID' => booker_location_id,
+            'Email' => email,
+            'Firstname' => password,
+            'BaseUrlOfHost' => base_url
           }, options)
     end
   end
