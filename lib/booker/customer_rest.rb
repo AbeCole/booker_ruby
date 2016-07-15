@@ -155,7 +155,7 @@ module Booker
           }, options)
     end
 
-    def create_customer(customer_id, data)
+    def update_customer(customer_id, data)
       put "/customer/#{customer_id}", build_params(data)
     end
   end
