@@ -147,5 +147,12 @@ module Booker
             'BaseUrlOfHost' => base_url
           }, options)
     end
+
+    def reset_password(key, password, options: {})
+      post '/password/reset', build_params({
+            'Key' => key,
+            'Password' => password
+          }, options)
+    end
   end
 end
