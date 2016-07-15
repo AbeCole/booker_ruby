@@ -39,6 +39,12 @@ module Booker
           'ExcludeClosedDates' => true
         }, options), Booker::Models::ClassInstance
     end
+    
+    def get_employees(location_id)
+      post '/employees', build_params({
+          'LocationID' => location_id
+        })
+    end
 
     def get_locations
       post '/locations', build_params
