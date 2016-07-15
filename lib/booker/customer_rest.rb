@@ -143,7 +143,7 @@ module Booker
       post '/forgot_password/custom', build_params({
             'LocationID' => booker_location_id,
             'Email' => email,
-            'Firstname' => password,
+            'Firstname' => first_name,
             'BaseUrlOfHost' => base_url
           }, options)
     end
