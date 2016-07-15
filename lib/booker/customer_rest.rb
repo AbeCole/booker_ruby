@@ -136,7 +136,7 @@ module Booker
           }, options.merge({
               client_id: self.client_id,
               client_secret: self.client_secret
-          }))
+          })), Booker::Models::Customer
     end
 
     def forgot_password(booker_location_id, email, first_name, base_url, options: {})
