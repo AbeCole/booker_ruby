@@ -155,8 +155,8 @@ module Booker
           }, options)
     end
 
-    def update_customer(customer_id, data)
-      put "/customer/#{customer_id}", build_params(data)
+    def update_customer(customer_id, data, access_token)
+      put "/customer/#{customer_id}", build_params(data, {'access_token': access_token})
     end
   end
 end
