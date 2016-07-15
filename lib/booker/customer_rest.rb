@@ -154,5 +154,9 @@ module Booker
             'Password' => password
           }, options)
     end
+
+    def create_customer(customer_id, data)
+      put "/customer/#{customer_id}", build_params(data)
+    end
   end
 end
