@@ -106,8 +106,8 @@ module Booker
         }
       }, options)
     end
-
-    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer, credit_card, options: {})
+    
+    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer_id, credit_card, access_token = {}, options: {})
       treatment_time_slots = treatment_ids.map do |id|
         {
           "StartDateTime": start_time,
@@ -115,11 +115,11 @@ module Booker
         }
       end
 
-      post '/appointment/create', build_params({
-            'LocationID' => booker_location_id,
-            'ItineraryTimeSlotList' => [
+      post "/appointment/create", build_params({
+            "LocationID" => booker_location_id,
+            "ItineraryTimeSlotList" => [
               "StartDateTime": start_time,
-              'TreatmentTimeSlots' => treatment_time_slots
+              "TreatmentTimeSlots" => treatment_time_slots
             ],
             "AppointmentPayment" => {
               "PaymentItem" => {
@@ -129,9 +129,11 @@ module Booker
                 }
               }
             },
-            'IncompleteAppointmentID' => incomplete_appoinment_id,
-            'Customer' => customer
-          }, options), Booker::Models::Appointment
+            "IncompleteAppointmentID" => incomplete_appoinment_id,
+            "Customer" => {
+              "ID" => customer_id
+            }
+          }, access_token.merge(options)), Booker::Models::Appointment
     end
 
     def login(booker_location_id, email, password, options: {})
