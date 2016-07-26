@@ -107,7 +107,7 @@ module Booker
       }, options)
     end
     
-    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer_id, credit_card, access_token: {}, options: {})
+    def create_appointment(booker_location_id, start_time, treatment_ids, incomplete_appoinment_id, customer_id, credit_card, custom_access_token: {}, options: {})
       treatment_time_slots = treatment_ids.map do |id|
         {
           "StartDateTime": start_time,
@@ -133,7 +133,7 @@ module Booker
             "Customer" => {
               "ID" => customer_id
             }
-          }, access_token.merge(options)), Booker::Models::Appointment
+          }, custom_access_token.merge(options)), Booker::Models::Appointment
     end
 
     def login(booker_location_id, email, password, options: {})
@@ -163,8 +163,8 @@ module Booker
           }, options)
     end
 
-    def update_customer(customer_id, data, access_token: {})
-      put "/customer/#{customer_id}", build_params(data, access_token)
+    def update_customer(customer_id, data, custom_access_token: {})
+      put "/customer/#{customer_id}", build_params(data, custom_access_token)
     end
   end
 end
